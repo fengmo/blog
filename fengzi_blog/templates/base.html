@@ -1,0 +1,51 @@
+	<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>疯子 - 分享成长之旅</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="/static/css/tomorrow.css" type="text/css" rel="stylesheet"/>
+    <link href="/static/css/blog.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8" src="/static/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/ueditor/ueditor.all.min.js"></script>
+</head>
+<body class="yue">
+<div id="body_wrapper">
+    <header class="header">
+        <div class="header_wrapper">
+            <a>
+                <h1 class="title">
+				疯子 - 分享成长之旅
+                </h1>
+            </a>
+
+            <ul class="nav">
+                <li><a href="/">Home</a></li>
+                <li><a href={% url 'archive_list' %}>Archive</a></li>
+                {% if user.is_authenticated %}
+               	<li><a href={% url 'blog_logout' %}>Logout</a></li>
+                <li><a href="{% url 'article_publish' %}">+New</a></li>
+				{% else %}
+               	<li><a href={% url 'blog_login' %}>Login</a></li>
+				{% endif %}
+               	<li><a href={% url 'info' %}>Info</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div id="main">
+    {% block main %}
+    {% endblock %}
+
+	{% block paginator %}
+	{% endblock %}
+    </div>
+
+    <footer id="footer">
+    </footer>
+</div>
+<script src="/static/ueditor/third-party/SyntaxHighlighter/shCore.js" type="text/javascript"></script>
+<link href="/static/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css"rel="stylesheet" type="text/css" >
+<script type="text/javascript" language="javascript">SyntaxHighlighter.all()</script>
+</body>
+</html>

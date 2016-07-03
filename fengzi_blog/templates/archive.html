@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<ul class="list_with_title container">
+    {% regroup archive_list by pubd.year as year %}
+    {% for y in year %}
+    <li class="listing_title">{{ y.grouper }}</li>
+    <ul class="listing">
+        {% for a in y.list %}
+        <li class="listing_item">
+        <span class="date">{{ a.pubd | date:"Y-m-d" }}</span>
+            <a href={% url 'article_detail' a.pk %} title="{{ a.title }}">{{ a.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block paginator %}
+<div class="pager">
+    {% with page=archive_list %}
+    {% if page.has_previous %}
+    	<a href="?page={{ page.previous_page_number }}" class="round pre">Pre</a>
+    {% endif %}
+
+    {% if page.has_next %}
+    	<a href="?page={{ page.next_page_number }}" class="round next">Next</a>
+    {% endif %}
+    {% endwith %}
+</div>    
+{% endblock %}

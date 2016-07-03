@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="posts">
+    <div class="post">
+        <h2 class="title">
+            <a>{{ article.title }}</a>
+        </h2>
+        <div class="post_body">
+            <div style="word-wrap:break-word; word-break:normal;" class="post_body">
+                {{ article.content | safe }}
+            </div>
+        </div>
+
+        {% spaceless %}
+        <div class="info">
+            <span title="Public Date" class="date">
+                <i class="fa fa-clock-o"></i>&nbsp;
+                {{ article.pubd | date:"Y-m-d" }}
+            </span>
+            <span title="Views" class="visitors">
+                <i class="fa fa-user"></i>&nbsp;
+                {{ article.views }}
+            </span>
+
+            <span class="tags">
+                <i class="fa fa-tags"></i>
+                <a>{{ article.tag }}</a>
+            </span>
+
+            {% if user.is_authenticated %}
+                <i class="fa fa-pencil-square"></i>&nbsp;
+                <a href={% url 'article_update' article.pk %}>Edit</a>
+            {% endif %}
+        </div>
+        {% endspaceless %}
+    </div>
+</div>
+{% endblock %}

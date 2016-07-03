@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block main %}
+<form action={% url 'article_publish' %} method="post">
+
+{% csrf_token %}
+<p>{{ form.title.label_tag }} {{ form.title }}</p>
+<p>{{ form.author.label_tag }} {{ form.author }}</p>
+<p>{{ form.content.label_tag }} {{ form.content }}</p>
+<p>{{ form.tag.label_tag }} {{ form.tag }}</p>
+
+<input type="submit" value="提交" />
+</form>
+{% endblock %}
+

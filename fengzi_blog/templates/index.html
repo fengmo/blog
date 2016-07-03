@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="posts">
+    {% for a in article_list %}
+    <div class="post">
+        <h2 class="title">
+            <a href={% url 'article_detail' a.pk %} >{{ a.title }}</a>
+        </h2>
+
+        <div class="post_body">
+            <div style="word-wrap:break-word" class="p_part yue">
+                {{ a.content | safe | truncatechars_html:200 }}
+            </div>
+        </div>
+
+        {% spaceless %}
+        <div class="info">
+            <span title="Public Date" class="date">
+                <i class="fa fa-clock-o"></i>
+                {{ a.pubd | date:"Y-m-d H:i:s" }}
+            </span>
+
+            <span title="Views" class="visitors">
+                <i class="fa fa-user"></i>
+                {{ a.views }}
+            </span>
+
+            <span class="tags">
+                <i class="fa fa-tags"></i>
+                {{ a.tag }}
+            </span>
+
+            <a href={% url 'article_detail' a.pk %} class="read_more">
+                <i class="fa fa-file-text-o"></i>
+                阅读全文
+            </a>
+
+            {% if user.is_authenticated %}
+                <i class="fa fa-pencil-square"></i>
+                <a href={% url 'article_update' a.pk %}>Edit</a>
+            {% endif %}
+
+        </div>
+        {% endspaceless %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block paginator %}
+<div class="pager">
+    {% with page=article_list %}
+    {% if page.has_previous %}
+    	<a href="?page={{ page.previous_page_number }}" class="round pre">Pre</a>
+    {% endif %}
+
+    {% if page.has_next %}
+    	<a href="?page={{ page.next_page_number }}" class="round next">Next</a>
+    {% endif %}
+    {% endwith %}
+</div>    
+{% endblock %}
