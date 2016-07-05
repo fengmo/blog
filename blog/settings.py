@@ -5,7 +5,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'ek2qaoq5jzg0rrqvqojw30^slnexzgn7ud4gcv1p8#881bt61l'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -17,7 +17,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fengzi_blog',
-	'DjangoUeditor',
+    'DjangoUeditor',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -30,7 +30,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 
-	'django.middleware.gzip.GZipMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
 )
 
 ROOT_URLCONF = 'blog.urls'
