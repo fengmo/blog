@@ -11,6 +11,7 @@
 # ./manager.py makemigrations 
 # ./manager.py migrate
 # ./manager.py createsuperuser
+  ./manager.py collectstatic 
 # 
 # 安装nginx
 
